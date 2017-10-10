@@ -78,9 +78,10 @@ module.exports = {
                             refer_hospital_label: service_dsr.get('refer_hospital_label'),                            
                             symptom_historical: service_dsr.get('symptom_historical'),
                             active: service_dsr.get('active'),
-                            emergency_status:service_dsr.get('emergency_status'),
-                            after_hours_status:service_dsr.get('after_hours_status'),                            
                             updatedatetime: service_dsr.get('updatedatetime'),
+                            emergency_status:service_dsr.get('emergency_status'),
+                            emergency_status_label:service_dsr.get('emergency_status_label'),                     
+                            after_hours_status:service_dsr.get('after_hours_status'),                            
                             clinic: [],
                             vitalsign: [],
                             diag: [],
@@ -95,7 +96,6 @@ module.exports = {
                             checkup: [],
                             patient:[],
                             doctor: [],
-                            death:[]
                         }                      
                         var clinic_dsr = new DataSetReader(outputFolder + '/clinic.txt');
                         while (clinic_dsr.next()) {
@@ -499,9 +499,15 @@ module.exports = {
                                         active: patient_dsr.get('active'),
                                         updatedatetime: patient_dsr.get('updatedatetime'),
                                         allergy: [],
-                                        patient_ref: []
+                                        patient_ref: [],
+                                        death:{
+                                            death_datetime:'',
+                                            icd10:'',
+                                            active:'',
+                                            updatedatetime:''
+                                        }
                                     }
-                                    if (fs.existsSync()) {
+                                    if (fs.existsSync(outputFolder + '/allergy.txt')) {
                                         var allergy_dsr = new DataSetReader(outputFolder + '/allergy.txt');
                                         while (allergy_dsr.next()) {
                                             if (allergy_dsr.get('hcode') === patient_dsr.get('hcode') && allergy_dsr.get('hn') === patient_dsr.get('hn')) {
@@ -518,7 +524,7 @@ module.exports = {
                                             }
                                         }
                                     }
-                                    if (fs.existsSync()) {
+                                    if (fs.existsSync(outputFolder + '/patient_ref.txt')) {
                                         var patient_ref_dsr = new DataSetReader(outputFolder + '/patient_ref.txt');
                                         while (patient_ref_dsr.next()) {
                                             if (patient_ref_dsr.get('hcode') === patient_dsr.get('hcode') && patient_ref_dsr.get('hn') === patient_dsr.get('hn')) {
@@ -535,6 +541,20 @@ module.exports = {
 
                                                 }
                                                 patient_data.patient_ref.push(patient_ref_data)
+                                            }
+                                        }
+                                    }
+                                    if (fs.existsSync(outputFolder + '/death.txt')) {
+                                        var death_dsr = new DataSetReader(outputFolder + '/death.txt');
+                                        while (death_dsr.next()) {
+                                            if (death_dsr.get('hcode') === patient_dsr.get('hcode') && death_dsr.get('hn') === patient_dsr.get('hn')) {
+                                                // var death_data = {}
+                                                // patient_data.death.addRow()
+                                                patient_data.death.death_datetime=death_dsr.get('death_datetime')
+                                                patient_data.death.icd10= death_dsr.get('icd10')
+                                                patient_data.death.active= death_dsr.get('active')
+                                                patient_data.death.updatedatetime= death_dsr.get('death_datetime')
+                                                patient_data.death.updatedatetime= death_dsr.get('death_datetime')
                                             }
                                         }
                                     }
