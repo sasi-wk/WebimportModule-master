@@ -5,7 +5,6 @@ var pg = require('pg'),
     formattimes = dt.format('Y-m-d H:M:S');
 
 var configDB = config.config
-var connect = config.connect
 var qsUploadInfo = config.queryString.uploadInfo
 var qsServiceSent = config.queryString.servicesent
 var pool = new pg.Pool(configDB);
