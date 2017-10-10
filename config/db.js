@@ -1,10 +1,11 @@
 module.exports = {
-    connect:"postgres://postgres:postgres@localhost/webImport",
+    //connect:"postgres://postgres:postgres@localhost/webImport",
     config:{
         user: 'postgres',
-        database: 'webImport',
+        database: 'webimport',
         password: 'postgres',
-        port: 5432,
+        host: '192.168.1.139',
+        port: 5455,
         max: 10, // max number of connection can be open to database
         idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
     },
