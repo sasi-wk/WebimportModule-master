@@ -1,0 +1,14 @@
+<form action="/api/upload" method="post" enctype="multipart/form-data">
+  <div id="dialog-message" title="Upload complete">
+      <p-dialog header="Godfather I" [(visible)]="display" modal="modal" width="300" [responsive]="true">
+          <p>Upload successfully</p>
+              <p-footer>
+                  <button type="button" (click)="display=false" >yes</button>
+              </p-footer>
+        </p-dialog>
+        <input type="file" id="selectFile" name="selectFile" accept="application/zip" required>
+        <button id="btnupload" type="submit" class="btn" data-icon-rs="upload" (click)="uploadFile()"> Upload</button>  
+  </div>
+
+</form>
+

@@ -1,0 +1,68 @@
+<div class="table">
+  <div class="table__sub">
+    <table class="dataTables_sub" width="100%">
+      <thead>
+        <tr>
+          <th>Ref.</th>
+          <th>Error</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let list of errlist; let i = index">
+          <td>{{list.ref.vn}}</td>
+          <td>{{list.err_msg}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- 
+<div style="margin: auto; max-width: 1000px; margin-top:50px">
+  <data-table id="films-grid"
+      headerTitle="UPLOADED INFO"
+      [items]="films"
+      [itemCount]="filmCount"
+      (reload)="reloadFilms($event)"
+
+      [limit]="8"
+      [sortBy]="'rating'"
+      [sortAsc]="false"
+
+      [selectColumn]="true"
+      [multiSelect]="false"
+      [substituteRows]="false"
+      [expandableRows]="true"
+      [translations]="translations"
+      [indexColumnHeader]="'#'"
+      [selectOnRowClick]="true"
+      >
+      <template #dataTableExpand let-item="item">
+          <div [textContent]="item.description" style="padding: 5px; color: gray"></div>
+      </template>
+      <data-table-column
+          [property]="'title'"
+          [header]="'Title'"
+          [sortable]="true">
+      </data-table-column>
+      <data-table-column
+          [property]="'year'"
+          [header]="'Release year'"
+          [sortable]="true">
+      </data-table-column>
+      <data-table-column
+          [property]="'rating'"
+          [header]="'Rating'"
+          [sortable]="true"
+          [cellColors]="cellColor">
+      </data-table-column>
+      <data-table-column
+          [property]="'director'"
+          [header]="'Director'">
+      </data-table-column>
+  </data-table>
+  <div style="margin-top: 10px">
+      <b>Selected:</b>
+      <span *ngIf="filmsTable.selectedRow == null"><i>No item selected</i></span>
+      <span [textContent]="filmsTable.selectedRow && filmsTable.selectedRow.item.title"></span>
+  </div>
+</div> -->
