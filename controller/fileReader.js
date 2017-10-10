@@ -66,13 +66,20 @@ module.exports = {
                             vn: service_dsr.get('vn'),
                             visit_datetime: service_dsr.get('visit_datetime'),
                             type: service_dsr.get('type'),
+                            type_label: service_dsr.get('type_label'),                            
                             ins_no: service_dsr.get('ins_no'),
                             ins_type: service_dsr.get('ins_type'),
+                            ins_type_label: service_dsr.get('ins_type_label'),
                             primary_hospital: service_dsr.get('primary_hospital'),
+                            primary_hospital_label: service_dsr.get('primary_hospital_label'),                            
                             regular_hospital: service_dsr.get('regular_hospital'),
+                            regular_hospital_label: service_dsr.get('regular_hospital_label'),                            
                             refer_hospital: service_dsr.get('refer_hospital'),
+                            refer_hospital_label: service_dsr.get('refer_hospital_label'),                            
                             symptom_historical: service_dsr.get('symptom_historical'),
                             active: service_dsr.get('active'),
+                            emergency_status:service_dsr.get('emergency_status'),
+                            after_hours_status:service_dsr.get('after_hours_status'),                            
                             updatedatetime: service_dsr.get('updatedatetime'),
                             clinic: [],
                             vitalsign: [],
@@ -87,7 +94,8 @@ module.exports = {
                             xray: [],
                             checkup: [],
                             patient:[],
-                            doctor: []
+                            doctor: [],
+                            death:[]
                         }                      
                         var clinic_dsr = new DataSetReader(outputFolder + '/clinic.txt');
                         while (clinic_dsr.next()) {
@@ -376,7 +384,7 @@ module.exports = {
                                         dct_desc: xray_dsr.get('dct_desc'),
                                         qty: xray_dsr.get('qty'),
                                         updatedatetime: xray_dsr.get('updatedatetime'),
-                                        active: xray_dsr.get('active'),
+                                        active: xray_dsr.get('active')
                                     }
                                     ServiceDelegate.xray.push(xray_data)
                                 }
@@ -405,7 +413,7 @@ module.exports = {
                                         loundness_level4_left: checkup_dsr.get('loundness_level4_left'),
                                         loundness_level4_right: checkup_dsr.get('loundness_level4_right'),
                                         active: checkup_dsr.get('active'),
-                                        updatedatetime: checkup_dsr.get('updatedatetime'),
+                                        updatedatetime: checkup_dsr.get('updatedatetime')
                                     }
                                     ServiceDelegate.checkup.push(checkup_data)
                                 }
@@ -534,6 +542,7 @@ module.exports = {
                                 }
                             }
                         }
+
                         if (fs.existsSync(outputFolder + '/doctor.txt')) {
                             var doctor_dsr = new DataSetReader(outputFolder + '/doctor.txt');
                             while (doctor_dsr.next()) {
@@ -548,6 +557,23 @@ module.exports = {
                                         updatedatetime: doctor_dsr.get('updatedatetime')
                                     }
                                     ServiceDelegate.doctor.push(doctor_data)
+                                }
+                            }
+                        }
+
+                        if (fs.existsSync(outputFolder + '/death.txt')) {
+                            var death_dsr = new DataSetReader(outputFolder + '/doctor.txt');
+                            while (death_dsr.next()) {
+                                if (death_dsr.get('hcode') === service_dsr.get('hcode') && death_dsr.get('hn') === service_dsr.get('hn')) {
+                                    var death_data = {
+                                        hcode:death_dsr.get('hcode'),
+                                        hn:death_dsr.get('hn'),
+                                        death_datetime:death_dsr.get('death_datetime'),
+                                        icd10:death_dsr.get('icd10'),
+                                        active:death_dsr.get('active'),
+                                        updatedatetime:death_dsr.get('updatedatetime')    
+                                    }
+                                    ServiceDelegate.doctor.push(death_data)
                                 }
                             }
                         }

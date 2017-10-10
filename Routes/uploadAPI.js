@@ -68,7 +68,6 @@ router.get('/uploaded', function (req, res, next) {
 /**API for select err information */
 router.get('/errorInfo',function (req, res, next,) {
     var results = []
-    console.log(new Date( req.query.ref)) 
     pool.connect(async function (err, client, done) {
         if (err) {
             done();

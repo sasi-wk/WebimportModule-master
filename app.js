@@ -10,7 +10,6 @@ port = 3000,
 path = require('path');
 
 /**Import from project dir */
-var fileuploader = require('./controller/fileupload')
 var callAPI = require('./controller/callAPI')
 var uploadPath = require('./Routes/uploadAPI')
 

@@ -96,7 +96,7 @@ module.exports = {
                             },
                             err_msg:error.response.data.id+': '+error.response.data.msg
                         })
-                        console.log(options.ServiceDelegate.patient[0].hcode+':'+options.ServiceDelegate.patient[0].hn+':'+options.ServiceDelegate.vn);
+                        console.log('hcode'+options.ServiceDelegate.patient[0].hcode+' - hn:'+options.ServiceDelegate.patient[0].hn+' - vn: '+options.ServiceDelegate.vn);
                         console.log(error.response.data);
                     }
                     else{
