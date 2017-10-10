@@ -68,9 +68,6 @@ router.get('/uploaded', function (req, res, next) {
 /**API for select err information */
 router.get('/errorInfo',function (req, res, next,) {
     var results = []
-    var uploaded="'"+req.query.ref+"'"
-    console.log(uploaded)
-    console.log( req.query.ref) 
     console.log(new Date( req.query.ref)) 
     pool.connect(async function (err, client, done) {
         if (err) {
@@ -143,6 +140,8 @@ router.post('/upload', function (req, res, next) {
         })//callAPI.login
     })//callAPI.getToken()   
 })
+
+
 
 module.exports = router;
 
